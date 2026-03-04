@@ -14,9 +14,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "validate:engine": "node --experimental-strip-types src/cli/validate.ts",
     "targets": "node --experimental-strip-types src/cli/list-targets.ts",
-    "package": "npm run build && vsce package",
-    "release:vsce": "vsce publish",
-    "release:ovsx": "ovsx publish",
+    "package": "npm run build && npx vsce package",
+    "release:vsce": "npx vsce publish",
+    "release:ovsx": "npx ovsx publish",
     "release:note": "node scripts/new-release-note.mjs",
     "release:auto-note": "node scripts/generate-release-note.mjs",
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
