@@ -7,22 +7,35 @@ function assertHex(value: string, context: string): void {
 }
 
 export function validateTheme(theme: CanonicalTheme): void {
-  const colorBuckets: Array<[string, Record<string, string>]> = [
-    ["semantic.syntax", theme.semantic.syntax],
-    ["semantic.diagnostics", theme.semantic.diagnostics],
-    ["semantic.vcs", theme.semantic.vcs],
-    ["ui.bg", theme.ui.bg],
-    ["ui.fg", theme.ui.fg],
-    ["ui.border", theme.ui.border],
-    ["ui.state", theme.ui.state],
-    ["ui.editor", theme.ui.editor],
-    ["ui.terminal", { background: theme.ui.terminal.background, foreground: theme.ui.terminal.foreground }],
-    ["ui.terminal.ansi", theme.ui.terminal.ansi]
-  ];
+  for (const [key, value] of Object.entries(theme.semantic.syntax) as Array<[string, string]>) {
+    assertHex(value, `semantic.syntax.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.semantic.diagnostics) as Array<[string, string]>) {
+    assertHex(value, `semantic.diagnostics.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.semantic.vcs) as Array<[string, string]>) {
+    assertHex(value, `semantic.vcs.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.ui.bg) as Array<[string, string]>) {
+    assertHex(value, `ui.bg.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.ui.fg) as Array<[string, string]>) {
+    assertHex(value, `ui.fg.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.ui.border) as Array<[string, string]>) {
+    assertHex(value, `ui.border.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.ui.state) as Array<[string, string]>) {
+    assertHex(value, `ui.state.${key}`);
+  }
+  for (const [key, value] of Object.entries(theme.ui.editor) as Array<[string, string]>) {
+    assertHex(value, `ui.editor.${key}`);
+  }
 
-  for (const [bucket, values] of colorBuckets) {
-    for (const [key, value] of Object.entries(values)) {
-      assertHex(value, `${bucket}.${key}`);
-    }
+  assertHex(theme.ui.terminal.background, "ui.terminal.background");
+  assertHex(theme.ui.terminal.foreground, "ui.terminal.foreground");
+
+  for (const [key, value] of Object.entries(theme.ui.terminal.ansi) as Array<[string, string]>) {
+    assertHex(value, `ui.terminal.ansi.${key}`);
   }
 }

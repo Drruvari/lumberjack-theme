@@ -7,35 +7,22 @@ import { buildEditorUiTokens } from "../theme/ui/interactions.ts";
 import { buildTerminalTokens } from "../theme/ui/terminal.ts";
 
 function makeTheme(palette: Palette): ReturnType<Variation["apply"]> {
-  const syntax = buildSyntaxTokens(palette, "dark");
-  const ui = buildSurfaceTokens(palette, "dark");
-  const editor = buildEditorUiTokens(palette, "dark");
-
-  // Keep dark readable while making it distinct from default.
-  syntax.keyword = palette.blue[7];
-  syntax.operator = palette.cyan[7];
-  syntax.type = palette.cyan[9];
-  ui.border.focus = palette.cyan[9];
-  ui.state.active = palette.cyan[7];
-  ui.state.selected = palette.cyan[5];
-  editor.cursor = palette.cyan[9];
-
   return {
     semantic: {
-      syntax,
+      syntax: buildSyntaxTokens(palette, "default"),
       diagnostics: buildDiagnosticTokens(palette),
       vcs: buildVcsTokens(palette)
     },
     ui: {
-      ...ui,
-      editor,
-      terminal: buildTerminalTokens(palette, "dark")
+      ...buildSurfaceTokens(palette, "default"),
+      editor: buildEditorUiTokens(palette, "default"),
+      terminal: buildTerminalTokens(palette, "default")
     }
   };
 }
 
-export const darkVariation: Variation = {
-  id: "dark",
-  displayName: "Dark",
+export const defaultVariation: Variation = {
+  id: "default",
+  displayName: "Default",
   apply: (palette) => makeTheme(palette)
 };

@@ -1,18 +1,18 @@
 {
-  "name": "Lumberjack dark",
+  "name": "Lumberjack default",
   "variables": {
     "background": "#0b0f14",
     "foreground": "#d5dfe7",
-    "accent": "#59c9d8",
+    "accent": "#2f6fb3",
     "comment": "#587088",
     "string": "#c67add",
-    "keyword": "#5d9ee6"
+    "keyword": "#dcc257"
   },
   "globals": {
     "background": "var(background)",
     "foreground": "var(foreground)",
     "selection": "#2f6fb34d",
-    "caret": "#9deaf2",
+    "caret": "#dcc257",
     "line_highlight": "#ffffff0d"
   },
   "rules": [
@@ -34,7 +34,7 @@
     },
     {
       "scope": "entity.name.type",
-      "foreground": "#9deaf2"
+      "foreground": "#58c985"
     }
   ]
 }

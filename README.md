@@ -24,11 +24,11 @@ It now includes a multi-editor TypeScript theme engine that generates themes fro
 1. Open Command Palette (`Cmd/Ctrl+Shift+P`).
 2. Run `Preferences: Color Theme`.
 3. Select one of:
-   - `Lumberjack Midnight Timber`
-   - `Lumberjack Forest Night`
-   - `Lumberjack White Birch`
-   - `Lumberjack Ember OLED`
-   - `Lumberjack Signal Colorblind`
+- `Lumberjack Theme (Default)`
+- `Lumberjack Forest Night`
+- `Lumberjack White Birch`
+- `Lumberjack Ember OLED`
+- `Lumberjack Signal Colorblind`
 
 ## Repository
 

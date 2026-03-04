@@ -5,12 +5,12 @@
   "semanticHighlighting": true,
   "colors": {
     "foreground": "#d5dfe7",
-    "focusBorder": "#5d9ee6",
+    "focusBorder": "#9deaf2",
     "editor.background": "#0b0f14",
     "editor.foreground": "#d5dfe7",
     "editorLineNumber.foreground": "#3a4d5f",
     "editorLineNumber.activeForeground": "#b7c7d4",
-    "editorCursor.foreground": "#dcc257",
+    "editorCursor.foreground": "#9deaf2",
     "editor.selectionBackground": "#2f6fb34d",
     "editor.findMatchBackground": "#b0682b59",
     "editor.lineHighlightBackground": "#ffffff0d",
@@ -22,7 +22,7 @@
     "statusBar.foreground": "#d5dfe7",
     "panel.background": "#172029",
     "panel.border": "#1f2b36",
-    "button.background": "#2f6fb3",
+    "button.background": "#59c9d8",
     "button.foreground": "#0b0f14",
     "input.background": "#1f2b36",
     "input.foreground": "#d5dfe7",
@@ -53,14 +53,14 @@
     "editorHint.foreground": "#58c985"
   },
   "semanticTokenColors": {
-    "class": "#58c985",
-    "enum": "#58c985",
+    "class": "#9deaf2",
+    "enum": "#9deaf2",
     "function": "#59c9d8",
     "method": "#59c9d8",
     "namespace": "#59c9d8",
     "parameter": "#edf2f7",
     "property": "#5d9ee6",
-    "type": "#58c985",
+    "type": "#9deaf2",
     "variable": "#edf2f7",
     "variableReadOnly": "#e39552"
   },
@@ -80,7 +80,7 @@
         "keyword.operator"
       ],
       "settings": {
-        "foreground": "#dcc257"
+        "foreground": "#5d9ee6"
       }
     },
     {
@@ -115,7 +115,7 @@
         "support.type"
       ],
       "settings": {
-        "foreground": "#58c985"
+        "foreground": "#9deaf2"
       }
     },
     {

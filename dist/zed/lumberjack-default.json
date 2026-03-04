@@ -1,5 +1,5 @@
 {
-  "name": "Lumberjack dark",
+  "name": "Lumberjack default",
   "appearance": "dark",
   "style": {
     "background": "#0b0f14",
@@ -12,10 +12,10 @@
   "syntax": {
     "text": "#d5dfe7",
     "comment": "#587088",
-    "keyword": "#5d9ee6",
+    "keyword": "#dcc257",
     "string": "#c67add",
     "function": "#59c9d8",
-    "type": "#9deaf2",
+    "type": "#58c985",
     "variable": "#edf2f7"
   }
 }

@@ -10,7 +10,7 @@ export type EditorId =
   | "warp"
   | "terminal";
 
-export type VariationId = "dark" | "light" | "oled" | "colorblind";
+export type VariationId = "default" | "dark" | "light" | "oled" | "colorblind";
 
 export interface PaletteScale {
   0: Hex;

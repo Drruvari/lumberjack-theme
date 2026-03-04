@@ -11,10 +11,15 @@
     "build": "npm run build:engine",
     "vscode:prepublish": "npm run build",
     "build:engine": "node --experimental-strip-types src/cli/build.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "validate:engine": "node --experimental-strip-types src/cli/validate.ts",
     "targets": "node --experimental-strip-types src/cli/list-targets.ts",
     "package": "npm run build && vsce package",
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "vscode": "^1.74.0"
@@ -44,7 +49,7 @@
   "contributes": {
     "themes": [
       {
-        "label": "Lumberjack Midnight Timber",
+        "label": "Lumberjack Theme (Default)",
         "uiTheme": "vs-dark",
         "path": "./dist/vscode/themes/lumberjack-color-theme.json"
       },

@@ -118,7 +118,7 @@ export const vscodeGenerator: EditorGenerator = {
       }
     ];
 
-    if (theme.variation === "dark") {
+    if (theme.variation === "default") {
       artifacts.push({
         path: path.join(context.outDir, "vscode", "themes", `${theme.id}-color-theme.json`),
         contents: payload

@@ -1,10 +1,12 @@
 import type { Variation, VariationId } from "../core/types.ts";
+import { defaultVariation } from "./default.ts";
 import { darkVariation } from "./dark.ts";
 import { lightVariation } from "./light.ts";
 import { oledVariation } from "./oled.ts";
 import { colorblindVariation } from "./colorblind.ts";
 
 export const allVariations: Variation[] = [
+  defaultVariation,
   darkVariation,
   lightVariation,
   oledVariation,

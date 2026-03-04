@@ -1,5 +1,5 @@
-name: lumberjack-dark
-accent: "#59c9d8"
+name: lumberjack-default
+accent: "#2f6fb3"
 background: "#0b0f14"
 foreground: "#d5dfe7"
 details: darker

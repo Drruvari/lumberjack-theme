@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scheme name="Lumberjack dark" version="142" parent_scheme="Default">
+<scheme name="Lumberjack default" version="142" parent_scheme="Default">
   <option name="LINE_SPACING" value="1.0" />
   <colors>
-    <option name="CARET_COLOR" value="9deaf2" />
+    <option name="CARET_COLOR" value="dcc257" />
     <option name="LINE_NUMBERS_COLOR" value="3a4d5f" />
     <option name="SELECTION_BACKGROUND" value="2f6fb3" />
     <option name="EDITOR_BACKGROUND" value="0b0f14" />

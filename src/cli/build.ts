@@ -16,7 +16,7 @@ async function main(): Promise<void> {
     themeDisplayName: "Lumberjack",
     outDir: "dist",
     packageVersion: version,
-    variations: ["dark", "light", "oled", "colorblind"]
+    variations: ["default", "dark", "light", "oled", "colorblind"]
   };
 
   const registry = registerBuiltins();

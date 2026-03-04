@@ -7,10 +7,10 @@ return {
   cursorline = { bg = "#ffffff0d" },
   visual = { bg = "#2f6fb34d" },
   comment = { fg = "#587088" },
-  keyword = { fg = "#5d9ee6" },
+  keyword = { fg = "#dcc257" },
   string = { fg = "#c67add" },
   function_ = { fg = "#59c9d8" },
-  type = { fg = "#9deaf2" },
+  type = { fg = "#58c985" },
   diagnostic = {
     error = "#e45a6c",
     warn = "#dcc257",

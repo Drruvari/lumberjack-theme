@@ -1,8 +1,8 @@
 {
-  "name": "Lumberjack dark",
+  "name": "Lumberjack default",
   "background": "#0b0f14",
   "foreground": "#d5dfe7",
-  "cursor": "#9deaf2",
+  "cursor": "#dcc257",
   "selection": "#2f6fb34d",
   "ansi": {
     "black": "#11161c",
