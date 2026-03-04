@@ -79,9 +79,9 @@ jobs:
           npx vsce publish --packagePath "${{ env.VSIX_FILE }}" -p "$VSCE_PAT"
 
       - name: Publish to Open VSX
-        if: ${{ secrets.OPEN_VSX_TOKEN != '' }}
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+        if: ${{ env.OPEN_VSX_TOKEN != '' }}
         run: npx ovsx publish "${{ env.VSIX_FILE }}" -p "$OPEN_VSX_TOKEN"
 
       - name: Upload VSIX to GitHub Release
