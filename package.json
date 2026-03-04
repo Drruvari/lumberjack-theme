@@ -5,7 +5,7 @@
   "version": "0.0.4",
   "type": "module",
   "publisher": "drruvari",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "icon": "assets/lumberjack.png",
   "scripts": {
     "build": "npm run build:engine",
@@ -17,6 +17,7 @@
     "package": "npm run build && vsce package",
     "release:vsce": "vsce publish",
     "release:ovsx": "ovsx publish",
+    "release:note": "node scripts/new-release-note.mjs",
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
   },
   "devDependencies": {

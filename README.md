@@ -1,86 +1,92 @@
 # Lumberjack Theme
 
-Lumberjack Theme is a dark, high-contrast color theme for VS Code and Cursor.
-It now includes a multi-editor TypeScript theme engine that generates themes from one canonical token system.
-
-## Preview
+Precision color themes for VS Code and Cursor, generated from one TypeScript theme engine.
 
 ![Lumberjack Theme Logo](./assets/lumberjack.png)
 
+## Why This Theme
+
+- Strong contrast with careful token grouping.
+- Five variations for different workflows and accessibility needs.
+- Multi-editor output from one canonical source of truth.
+- Automated packaging and publishing pipeline.
+
+## Theme Variations
+
+1. `Lumberjack Theme (Default)` - Bearded/WebDevCody inspired dark baseline.
+2. `Lumberjack Forest Night` - Cooler dark variant.
+3. `Lumberjack White Birch` - Clean light variant.
+4. `Lumberjack Ember OLED` - True-black OLED variant.
+5. `Lumberjack Signal Colorblind` - Contrast-biased colorblind-safe variant.
+
 ## Install
 
-### VS Code Marketplace
+### VS Code / Cursor Marketplace
 1. Open Extensions.
-2. Search for `Lumberjack Theme`.
-3. Click Install.
+2. Search `Lumberjack Theme`.
+3. Install.
 
-### Cursor
+### From VSIX
 1. Open Extensions.
-2. Search for `Lumberjack Theme`.
-3. If search does not show it, open the Extensions menu (`...`) -> `Install from VSIX...`.
-4. Select the packaged file (for example `lumberjack-theme-0.0.2.vsix`).
+2. Use `...` -> `Install from VSIX...`.
+3. Select latest packaged file, e.g. `lumberjack-theme-0.0.4.vsix`.
 
 ## Activate
+
 1. Open Command Palette (`Cmd/Ctrl+Shift+P`).
 2. Run `Preferences: Color Theme`.
-3. Select one of:
-- `Lumberjack Theme (Default)`
-- `Lumberjack Forest Night`
-- `Lumberjack White Birch`
-- `Lumberjack Ember OLED`
-- `Lumberjack Signal Colorblind`
+3. Select a Lumberjack variation.
 
-## Repository
-
-- Issues: https://github.com/drruvari/lumberjack-theme/issues
-- Source: https://github.com/drruvari/lumberjack-theme
-
-## Build Engine
-
-Generate all variations for all supported editors:
+## Development
 
 ```bash
+npm run typecheck
 npm run build
-```
-
-List supported output targets:
-
-```bash
-npm run targets
-```
-
-Validate canonical token integrity:
-
-```bash
 npm run validate:engine
 ```
 
-## Theme Coverage Audit
+### Useful commands
 
-To find missing color tokens quickly:
+- `npm run package` - build and package VSIX.
+- `npm run targets` - list output targets.
+- `npm run tokens:diff` - compare generated VS Code token coverage.
+- `npm run release:note -- 0.0.5` - generate a release-note template.
 
-1. In VS Code, run `Developer: Generate Color Theme From Current Settings`.
-2. Save it as `tmp/generated-theme.json`.
-3. Run:
+## Release Notes Convention
 
-```bash
-npm run tokens:diff
-```
+Release notes are versioned and stored in [`releases/`](./releases):
 
-Reference checklist: [docs/vscode-theme-token-checklist.md](./docs/vscode-theme-token-checklist.md)
+- One markdown file per version: `releases/<version>.md`
+- Required sections:
+  - `Summary`
+  - `Highlights`
+  - `Added`
+  - `Changed`
+  - `Fixed`
+  - `Breaking Changes` (when needed)
+  - `Verification`
+  - `Assets`
 
-## Auto Publish On Push
+See [`releases/README.md`](./releases/README.md) and [`releases/_template.md`](./releases/_template.md).
 
-This repo includes GitHub Actions workflow [`.github/workflows/auto-publish.yml`](./.github/workflows/auto-publish.yml).
+## Automated Publish On Push
 
-When you push to `main` or `master`, it will automatically:
-1. Run `npm ci`.
-2. Bump patch version (`npm version patch`).
-3. Build the theme.
-4. Publish to VS Code Marketplace.
-5. Optionally publish to Open VSX (if token exists).
-6. Push the version commit and tag back to GitHub.
+Workflow: [`.github/workflows/auto-publish.yml`](./.github/workflows/auto-publish.yml)
 
-Required GitHub repository secrets:
-- `VSCE_PAT` (required): Visual Studio Marketplace personal access token.
-- `OPEN_VSX_TOKEN` (optional): Open VSX publish token.
+On each push it will:
+1. Install dependencies.
+2. Bump patch version.
+3. Typecheck/build/validate.
+4. Package a new VSIX.
+5. Upload VSIX as artifact and GitHub release asset.
+6. Publish to VS Code Marketplace.
+7. Optionally publish to Open VSX.
+8. Push version commit and tag.
+
+Required GitHub secrets:
+- `VSCE_PAT` (required)
+- `OPEN_VSX_TOKEN` (optional)
+
+## License
+
+GNU GPL v3.0 only. See [`LICENSE`](./LICENSE).

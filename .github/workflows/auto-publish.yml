@@ -3,8 +3,7 @@ name: Auto Publish Theme
 on:
   push:
     branches:
-      - main
-      - master
+      - "**"
 
 permissions:
   contents: write
@@ -30,7 +29,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Configure git author
         run: |
@@ -40,19 +39,44 @@ jobs:
       - name: Bump patch version
         run: npm version patch -m "chore(release): %s [skip ci]"
 
-      - name: Build artifacts
-        run: npm run build
+      - name: Typecheck and build
+        run: |
+          npm run typecheck
+          npm run build
+          npm run validate:engine
+
+      - name: Package VSIX
+        run: npm run package
+
+      - name: Resolve release version
+        run: |
+          echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+          echo "VSIX_FILE=lumberjack-theme-$(node -p "require('./package.json').version").vsix" >> "$GITHUB_ENV"
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.VSIX_FILE }}
+          path: ${{ env.VSIX_FILE }}
+          if-no-files-found: error
 
       - name: Publish to VS Code Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: npx vsce publish -p "$VSCE_PAT"
+        run: npx vsce publish --packagePath "${{ env.VSIX_FILE }}" -p "$VSCE_PAT"
 
       - name: Publish to Open VSX
         if: ${{ secrets.OPEN_VSX_TOKEN != '' }}
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
-        run: npx ovsx publish -p "$OPEN_VSX_TOKEN"
+        run: npx ovsx publish "${{ env.VSIX_FILE }}" -p "$OPEN_VSX_TOKEN"
+
+      - name: Upload VSIX to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "v${{ env.VERSION }}" >/dev/null 2>&1 || gh release create "v${{ env.VERSION }}" --title "v${{ env.VERSION }}" --notes "Automated release."
+          gh release upload "v${{ env.VERSION }}" "${{ env.VSIX_FILE }}" --clobber
 
       - name: Push version commit and tag
         run: git push --follow-tags

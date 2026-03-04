@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+Detailed release notes live in `releases/*.md`.
+
+## [0.0.4] - 2026-03-04
+
+- Added dedicated default variation and mapped VS Code alias to default.
+- Made dark variation visually distinct from default.
+- Added automated publish workflow improvements (VSIX artifact + release upload + marketplace publish).
+- Fixed TypeScript diagnostics around `.ts` imports and validation typing.
+
+## [0.0.3] - 2026-03-04
+
+- Added multiple contributed theme options with named variants.
+- Improved Cursor compatibility and installation guidance.
+
 ## [0.0.2] - 2026-03-04
 
 - Introduced a canonical TypeScript theme engine with layered token architecture.
