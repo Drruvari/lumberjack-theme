@@ -1,0 +1,21 @@
+{
+  "name": "Lumberjack colorblind",
+  "appearance": "dark",
+  "style": {
+    "background": "#0b0f14",
+    "text": "#d5dfe7",
+    "panel_background": "#172029",
+    "panel_border": "#1f2b36",
+    "status_bar_background": "#11161c",
+    "border": "#1f2b36"
+  },
+  "syntax": {
+    "text": "#d5dfe7",
+    "comment": "#587088",
+    "keyword": "#9cc8ff",
+    "string": "#c67add",
+    "function": "#59c9d8",
+    "type": "#f7e08e",
+    "variable": "#edf2f7"
+  }
+}

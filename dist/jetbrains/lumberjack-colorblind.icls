@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheme name="Lumberjack colorblind" version="142" parent_scheme="Default">
+  <option name="LINE_SPACING" value="1.0" />
+  <colors>
+    <option name="CARET_COLOR" value="9cc8ff" />
+    <option name="LINE_NUMBERS_COLOR" value="3a4d5f" />
+    <option name="SELECTION_BACKGROUND" value="2f6fb3" />
+    <option name="EDITOR_BACKGROUND" value="0b0f14" />
+    <option name="EDITOR_FOREGROUND" value="d5dfe7" />
+  </colors>
+</scheme>

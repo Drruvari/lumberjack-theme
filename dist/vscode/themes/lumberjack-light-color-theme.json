@@ -1,0 +1,130 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Lumberjack light",
+  "type": "light",
+  "semanticHighlighting": true,
+  "colors": {
+    "foreground": "#11161c",
+    "focusBorder": "#5d9ee6",
+    "editor.background": "#edf2f7",
+    "editor.foreground": "#11161c",
+    "editorLineNumber.foreground": "#587088",
+    "editorLineNumber.activeForeground": "#172029",
+    "editorCursor.foreground": "#dcc257",
+    "editor.selectionBackground": "#5d9ee64d",
+    "editor.findMatchBackground": "#e3955259",
+    "editor.lineHighlightBackground": "#0000000d",
+    "activityBar.background": "#d5dfe7",
+    "activityBar.foreground": "#11161c",
+    "sideBar.background": "#b7c7d4",
+    "sideBar.foreground": "#11161c",
+    "statusBar.background": "#d5dfe7",
+    "statusBar.foreground": "#11161c",
+    "panel.background": "#b7c7d4",
+    "panel.border": "#8aa1b5",
+    "button.background": "#2f6fb3",
+    "button.foreground": "#edf2f7",
+    "input.background": "#8aa1b5",
+    "input.foreground": "#11161c",
+    "terminal.background": "#edf2f7",
+    "terminal.foreground": "#11161c",
+    "terminal.ansiBlack": "#1f2b36",
+    "terminal.ansiRed": "#e45a6c",
+    "terminal.ansiGreen": "#58c985",
+    "terminal.ansiYellow": "#dcc257",
+    "terminal.ansiBlue": "#5d9ee6",
+    "terminal.ansiMagenta": "#c67add",
+    "terminal.ansiCyan": "#59c9d8",
+    "terminal.ansiWhite": "#d5dfe7",
+    "terminal.ansiBrightBlack": "#587088",
+    "terminal.ansiBrightRed": "#ff9dad",
+    "terminal.ansiBrightGreen": "#97e6b1",
+    "terminal.ansiBrightYellow": "#f7e08e",
+    "terminal.ansiBrightBlue": "#9cc8ff",
+    "terminal.ansiBrightMagenta": "#e7b5f4",
+    "terminal.ansiBrightCyan": "#9deaf2",
+    "terminal.ansiBrightWhite": "#ffffff",
+    "gitDecoration.addedResourceForeground": "#58c985",
+    "gitDecoration.modifiedResourceForeground": "#dcc257",
+    "gitDecoration.deletedResourceForeground": "#e45a6c",
+    "editorError.foreground": "#e45a6c",
+    "editorWarning.foreground": "#dcc257",
+    "editorInfo.foreground": "#5d9ee6",
+    "editorHint.foreground": "#58c985"
+  },
+  "semanticTokenColors": {
+    "class": "#58c985",
+    "enum": "#58c985",
+    "function": "#59c9d8",
+    "method": "#59c9d8",
+    "namespace": "#59c9d8",
+    "parameter": "#172029",
+    "property": "#5d9ee6",
+    "type": "#58c985",
+    "variable": "#172029",
+    "variableReadOnly": "#e39552"
+  },
+  "tokenColors": [
+    {
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#587088"
+      }
+    },
+    {
+      "scope": [
+        "keyword",
+        "storage",
+        "keyword.operator"
+      ],
+      "settings": {
+        "foreground": "#dcc257"
+      }
+    },
+    {
+      "scope": [
+        "string"
+      ],
+      "settings": {
+        "foreground": "#c67add"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric",
+        "constant.language"
+      ],
+      "settings": {
+        "foreground": "#e39552"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function",
+        "support.function"
+      ],
+      "settings": {
+        "foreground": "#59c9d8"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "support.type"
+      ],
+      "settings": {
+        "foreground": "#58c985"
+      }
+    },
+    {
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#172029"
+      }
+    }
+  ]
+}

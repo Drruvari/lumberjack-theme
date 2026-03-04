@@ -3,9 +3,18 @@
   "displayName": "Lumberjack Theme",
   "description": "A high-contrast dark theme with a cyber-lumberjack palette for VS Code and Cursor.",
   "version": "0.0.1",
+  "type": "module",
   "publisher": "drruvari",
   "license": "MIT",
-  "icon": "lumberjack.png",
+  "icon": "assets/lumberjack.png",
+  "scripts": {
+    "build": "npm run build:engine",
+    "build:engine": "node --experimental-strip-types src/cli/build.ts",
+    "validate:engine": "node --experimental-strip-types src/cli/validate.ts",
+    "targets": "node --experimental-strip-types src/cli/list-targets.ts",
+    "package": "npm run build && vsce package",
+    "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -36,7 +45,7 @@
       {
         "label": "Lumberjack Theme",
         "uiTheme": "vs-dark",
-        "path": "./themes/lumberjack-color-theme.json"
+        "path": "./dist/vscode/themes/lumberjack-color-theme.json"
       }
     ]
   }

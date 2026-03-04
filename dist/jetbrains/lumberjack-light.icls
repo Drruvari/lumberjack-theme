@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheme name="Lumberjack light" version="142" parent_scheme="Default">
+  <option name="LINE_SPACING" value="1.0" />
+  <colors>
+    <option name="CARET_COLOR" value="dcc257" />
+    <option name="LINE_NUMBERS_COLOR" value="587088" />
+    <option name="SELECTION_BACKGROUND" value="5d9ee6" />
+    <option name="EDITOR_BACKGROUND" value="edf2f7" />
+    <option name="EDITOR_FOREGROUND" value="11161c" />
+  </colors>
+</scheme>

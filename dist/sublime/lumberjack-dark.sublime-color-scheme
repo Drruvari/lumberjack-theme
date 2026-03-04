@@ -1,0 +1,40 @@
+{
+  "name": "Lumberjack dark",
+  "variables": {
+    "background": "#0b0f14",
+    "foreground": "#d5dfe7",
+    "accent": "#2f6fb3",
+    "comment": "#587088",
+    "string": "#c67add",
+    "keyword": "#dcc257"
+  },
+  "globals": {
+    "background": "var(background)",
+    "foreground": "var(foreground)",
+    "selection": "#2f6fb34d",
+    "caret": "#dcc257",
+    "line_highlight": "#ffffff0d"
+  },
+  "rules": [
+    {
+      "scope": "comment",
+      "foreground": "var(comment)"
+    },
+    {
+      "scope": "string",
+      "foreground": "var(string)"
+    },
+    {
+      "scope": "keyword",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "entity.name.function",
+      "foreground": "#59c9d8"
+    },
+    {
+      "scope": "entity.name.type",
+      "foreground": "#58c985"
+    }
+  ]
+}

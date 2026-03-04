@@ -1,0 +1,25 @@
+{
+  "name": "Lumberjack light",
+  "background": "#edf2f7",
+  "foreground": "#11161c",
+  "cursor": "#dcc257",
+  "selection": "#5d9ee64d",
+  "ansi": {
+    "black": "#1f2b36",
+    "red": "#e45a6c",
+    "green": "#58c985",
+    "yellow": "#dcc257",
+    "blue": "#5d9ee6",
+    "magenta": "#c67add",
+    "cyan": "#59c9d8",
+    "white": "#d5dfe7",
+    "brightBlack": "#587088",
+    "brightRed": "#ff9dad",
+    "brightGreen": "#97e6b1",
+    "brightYellow": "#f7e08e",
+    "brightBlue": "#9cc8ff",
+    "brightMagenta": "#e7b5f4",
+    "brightCyan": "#9deaf2",
+    "brightWhite": "#ffffff"
+  }
+}

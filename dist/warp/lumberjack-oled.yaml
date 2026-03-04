@@ -1,0 +1,24 @@
+name: lumberjack-oled
+accent: "#2f8b98"
+background: "#000000"
+foreground: "#d5dfe7"
+details: darker
+terminal_colors:
+  normal:
+    black: "#11161c"
+    red: "#e45a6c"
+    green: "#58c985"
+    yellow: "#dcc257"
+    blue: "#5d9ee6"
+    magenta: "#c67add"
+    cyan: "#59c9d8"
+    white: "#d5dfe7"
+  bright:
+    black: "#587088"
+    red: "#ff9dad"
+    green: "#97e6b1"
+    yellow: "#f7e08e"
+    blue: "#9cc8ff"
+    magenta: "#e7b5f4"
+    cyan: "#9deaf2"
+    white: "#ffffff"

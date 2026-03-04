@@ -1,0 +1,40 @@
+{
+  "name": "Lumberjack colorblind",
+  "variables": {
+    "background": "#0b0f14",
+    "foreground": "#d5dfe7",
+    "accent": "#5d9ee6",
+    "comment": "#587088",
+    "string": "#c67add",
+    "keyword": "#9cc8ff"
+  },
+  "globals": {
+    "background": "var(background)",
+    "foreground": "var(foreground)",
+    "selection": "#2f6fb34d",
+    "caret": "#9cc8ff",
+    "line_highlight": "#ffffff0d"
+  },
+  "rules": [
+    {
+      "scope": "comment",
+      "foreground": "var(comment)"
+    },
+    {
+      "scope": "string",
+      "foreground": "var(string)"
+    },
+    {
+      "scope": "keyword",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "entity.name.function",
+      "foreground": "#59c9d8"
+    },
+    {
+      "scope": "entity.name.type",
+      "foreground": "#f7e08e"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+name: lumberjack-light
+accent: "#2f6fb3"
+background: "#edf2f7"
+foreground: "#11161c"
+details: lighter
+terminal_colors:
+  normal:
+    black: "#1f2b36"
+    red: "#e45a6c"
+    green: "#58c985"
+    yellow: "#dcc257"
+    blue: "#5d9ee6"
+    magenta: "#c67add"
+    cyan: "#59c9d8"
+    white: "#d5dfe7"
+  bright:
+    black: "#587088"
+    red: "#ff9dad"
+    green: "#97e6b1"
+    yellow: "#f7e08e"
+    blue: "#9cc8ff"
+    magenta: "#e7b5f4"
+    cyan: "#9deaf2"
+    white: "#ffffff"
