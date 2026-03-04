@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -36,24 +37,23 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump patch version (no commit/tag yet)
+      - name: Bump version
         run: npm version patch --no-git-tag-version
 
-      - name: Resolve release version
+      - name: Resolve version and vsix filename
         run: |
-          VERSION="$(node -p 'require("./package.json").version')"
+          VERSION="$(node -e "console.log(require('./package.json').version)")"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "VSIX_FILE=lumberjack-theme-$VERSION.vsix" >> "$GITHUB_ENV"
 
       - name: Generate release note
-        run: npm run release:auto-note -- "${{ env.VERSION }}"
+        run: npm run release:auto-note -- "$VERSION"
 
-      - name: Commit release files and tag
+      - name: Commit release files and create tag
         run: |
-          git add package.json package-lock.json "releases/${{ env.VERSION }}.md"
-          git add CHANGELOG.md || true
-          git commit -m "chore(release): v${{ env.VERSION }} [skip ci]"
-          git tag "v${{ env.VERSION }}"
+          git add package.json package-lock.json "releases/$VERSION.md"
+          git commit -m "chore(release): v$VERSION [skip ci]"
+          git tag "v$VERSION"
 
       - name: Typecheck and build
         run: |
@@ -76,20 +76,17 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           test -n "$VSCE_PAT"
-          npx vsce publish --packagePath "${{ env.VSIX_FILE }}" -p "$VSCE_PAT"
+          npx vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT"
 
-      - name: Publish to Open VSX
+      - name: Publish to Open VSX (optional)
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
-        if: ${{ env.OPEN_VSX_TOKEN != '' }}
-        run: npx ovsx publish "${{ env.VSIX_FILE }}" -p "$OPEN_VSX_TOKEN"
-
-      - name: Upload VSIX to GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          gh release view "v${{ env.VERSION }}" >/dev/null 2>&1 || gh release create "v${{ env.VERSION }}" --title "v${{ env.VERSION }}" --notes "Automated release."
-          gh release upload "v${{ env.VERSION }}" "${{ env.VSIX_FILE }}" --clobber
+          if [ -n "$OPEN_VSX_TOKEN" ]; then
+            npx ovsx publish "$VSIX_FILE" -p "$OPEN_VSX_TOKEN"
+          else
+            echo "OPEN_VSX_TOKEN not set; skipping Open VSX publish."
+          fi
 
-      - name: Push version commit and tag
-        run: git push --follow-tags
+      - name: Push release commit and tag
+        run: git push origin "HEAD:${{ github.ref_name }}" --follow-tags
