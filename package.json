@@ -18,6 +18,7 @@
     "release:vsce": "vsce publish",
     "release:ovsx": "ovsx publish",
     "release:note": "node scripts/new-release-note.mjs",
+    "release:auto-note": "node scripts/generate-release-note.mjs",
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
   },
   "devDependencies": {

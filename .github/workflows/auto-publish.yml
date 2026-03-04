@@ -36,8 +36,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump patch version
-        run: npm version patch -m "chore(release): %s [skip ci]"
+      - name: Bump patch version (no commit/tag yet)
+        run: npm version patch --no-git-tag-version
+
+      - name: Resolve release version
+        run: |
+          echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+          echo "VSIX_FILE=lumberjack-theme-$(node -p "require('./package.json').version").vsix" >> "$GITHUB_ENV"
+
+      - name: Generate release note
+        run: npm run release:auto-note -- "${{ env.VERSION }}"
+
+      - name: Commit release files and tag
+        run: |
+          git add package.json package-lock.json "releases/${{ env.VERSION }}.md"
+          git commit -m "chore(release): v${{ env.VERSION }} [skip ci]"
+          git tag "v${{ env.VERSION }}"
 
       - name: Typecheck and build
         run: |
@@ -47,11 +61,6 @@ jobs:
 
       - name: Package VSIX
         run: npm run package
-
-      - name: Resolve release version
-        run: |
-          echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
-          echo "VSIX_FILE=lumberjack-theme-$(node -p "require('./package.json').version").vsix" >> "$GITHUB_ENV"
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4

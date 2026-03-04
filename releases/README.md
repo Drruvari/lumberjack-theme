@@ -7,6 +7,7 @@ This directory contains clean, detailed release notes.
 - One version per file: `<version>.md`
 - Example: `0.0.4.md`
 - Keep entries factual and testable.
+- CI auto-generates new files via `npm run release:auto-note -- <version>`.
 
 ## Required Sections
 

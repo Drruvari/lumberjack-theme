@@ -77,11 +77,13 @@ On each push it will:
 1. Install dependencies.
 2. Bump patch version.
 3. Typecheck/build/validate.
-4. Package a new VSIX.
-5. Upload VSIX as artifact and GitHub release asset.
-6. Publish to VS Code Marketplace.
-7. Optionally publish to Open VSX.
-8. Push version commit and tag.
+4. Auto-generate `releases/<version>.md` from commit history.
+5. Commit version + release note and create tag.
+6. Package a new VSIX.
+7. Upload VSIX as artifact and GitHub release asset.
+8. Publish to VS Code Marketplace.
+9. Optionally publish to Open VSX.
+10. Push release commit and tag.
 
 Required GitHub secrets:
 - `VSCE_PAT` (required)
