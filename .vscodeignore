@@ -9,3 +9,12 @@ AGENTS.md
 src/**
 scripts/**
 releases/**
+docs/**
+dist/zed/**
+dist/jetbrains/**
+dist/neovim/**
+dist/sublime/**
+dist/helix/**
+dist/warp/**
+dist/terminal/**
+tmp/**
