@@ -41,8 +41,9 @@ jobs:
 
       - name: Resolve release version
         run: |
-          echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
-          echo "VSIX_FILE=lumberjack-theme-$(node -p "require('./package.json').version").vsix" >> "$GITHUB_ENV"
+          VERSION="$(node -p 'require(\"./package.json\").version')"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "VSIX_FILE=lumberjack-theme-$VERSION.vsix" >> "$GITHUB_ENV"
 
       - name: Generate release note
         run: npm run release:auto-note -- "${{ env.VERSION }}"
@@ -50,6 +51,7 @@ jobs:
       - name: Commit release files and tag
         run: |
           git add package.json package-lock.json "releases/${{ env.VERSION }}.md"
+          git add CHANGELOG.md || true
           git commit -m "chore(release): v${{ env.VERSION }} [skip ci]"
           git tag "v${{ env.VERSION }}"
 
@@ -72,7 +74,9 @@ jobs:
       - name: Publish to VS Code Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: npx vsce publish --packagePath "${{ env.VSIX_FILE }}" -p "$VSCE_PAT"
+        run: |
+          test -n "$VSCE_PAT"
+          npx vsce publish --packagePath "${{ env.VSIX_FILE }}" -p "$VSCE_PAT"
 
       - name: Publish to Open VSX
         if: ${{ secrets.OPEN_VSX_TOKEN != '' }}
