@@ -75,7 +75,10 @@ jobs:
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
-          test -n "$VSCE_PAT"
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::error::Missing VSCE_PAT secret. Add it in GitHub repo Settings > Secrets and variables > Actions."
+            exit 1
+          fi
           npx vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT"
 
       - name: Publish to Open VSX (optional)
