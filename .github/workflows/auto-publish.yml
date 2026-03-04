@@ -3,13 +3,13 @@ name: Auto Publish Theme
 on:
   push:
     branches:
-      - "**"
+      - main
 
 permissions:
   contents: write
 
 concurrency:
-  group: auto-publish-${{ github.ref }}
+  group: auto-publish
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
+          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -30,7 +30,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Configure git author
         run: |
@@ -40,7 +40,7 @@ jobs:
       - name: Bump version
         run: npm version patch --no-git-tag-version
 
-      - name: Resolve version and vsix filename
+      - name: Resolve version and VSIX filename
         run: |
           VERSION="$(node -e "console.log(require('./package.json').version)")"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
@@ -49,11 +49,8 @@ jobs:
       - name: Generate release note
         run: npm run release:auto-note -- "$VERSION"
 
-      - name: Commit release files and create tag
-        run: |
-          git add package.json package-lock.json "releases/$VERSION.md"
-          git commit -m "chore(release): v$VERSION [skip ci]"
-          git tag "v$VERSION"
+      - name: Update CHANGELOG.md
+        run: npm run release:changelog -- "$VERSION"
 
       - name: Typecheck and build
         run: |
@@ -62,7 +59,13 @@ jobs:
           npm run validate:engine
 
       - name: Package VSIX
-        run: npm run package
+        run: vsce package --out "$VSIX_FILE"
+
+      - name: Commit release files
+        run: |
+          git add package.json package-lock.json CHANGELOG.md "releases/$VERSION.md" dist/
+          git commit -m "chore(release): v$VERSION [skip ci]"
+          git tag "v$VERSION"
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4
@@ -76,20 +79,20 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           if [ -z "$VSCE_PAT" ]; then
-            echo "::error::Missing VSCE_PAT secret. Add it in GitHub repo Settings > Secrets and variables > Actions."
+            echo "::error::VSCE_PAT secret is not set. Go to GitHub → Settings → Secrets → Actions and add VSCE_PAT."
             exit 1
           fi
-          npx vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT"
+          vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT"
 
-      - name: Publish to Open VSX (optional)
+      - name: Publish to Open VSX
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
         run: |
           if [ -n "$OPEN_VSX_TOKEN" ]; then
-            npx ovsx publish "$VSIX_FILE" -p "$OPEN_VSX_TOKEN"
+            ovsx publish "$VSIX_FILE" -p "$OPEN_VSX_TOKEN"
           else
-            echo "OPEN_VSX_TOKEN not set; skipping Open VSX publish."
+            echo "OPEN_VSX_TOKEN not set — skipping Open VSX publish."
           fi
 
       - name: Push release commit and tag
-        run: git push origin "HEAD:${{ github.ref_name }}" --follow-tags
+        run: git push origin main --follow-tags
