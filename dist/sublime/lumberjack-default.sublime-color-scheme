@@ -1,19 +1,19 @@
 {
   "name": "Lumberjack default",
   "variables": {
-    "background": "#0b0f14",
-    "foreground": "#d5dfe7",
-    "accent": "#2f6fb3",
-    "comment": "#587088",
-    "string": "#c67add",
-    "keyword": "#dcc257"
+    "background": "#00171a",
+    "foreground": "#4eeafe",
+    "accent": "#003942",
+    "comment": "#018799",
+    "string": "#f75f94",
+    "keyword": "#f1d868"
   },
   "globals": {
     "background": "var(background)",
     "foreground": "var(foreground)",
-    "selection": "#2f6fb34d",
-    "caret": "#dcc257",
-    "line_highlight": "#ffffff0d"
+    "selection": "#e95d7440",
+    "caret": "#e95d74",
+    "line_highlight": "#002e344d"
   },
   "rules": [
     {
@@ -30,11 +30,11 @@
     },
     {
       "scope": "entity.name.function",
-      "foreground": "#59c9d8"
+      "foreground": "#82f0ff"
     },
     {
       "scope": "entity.name.type",
-      "foreground": "#58c985"
+      "foreground": "#f75f94"
     }
   ]
 }
