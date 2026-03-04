@@ -68,3 +68,19 @@ npm run tokens:diff
 ```
 
 Reference checklist: [docs/vscode-theme-token-checklist.md](./docs/vscode-theme-token-checklist.md)
+
+## Auto Publish On Push
+
+This repo includes GitHub Actions workflow [`.github/workflows/auto-publish.yml`](./.github/workflows/auto-publish.yml).
+
+When you push to `main` or `master`, it will automatically:
+1. Run `npm ci`.
+2. Bump patch version (`npm version patch`).
+3. Build the theme.
+4. Publish to VS Code Marketplace.
+5. Optionally publish to Open VSX (if token exists).
+6. Push the version commit and tag back to GitHub.
+
+Required GitHub repository secrets:
+- `VSCE_PAT` (required): Visual Studio Marketplace personal access token.
+- `OPEN_VSX_TOKEN` (optional): Open VSX publish token.
