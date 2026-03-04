@@ -17,7 +17,7 @@
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.74.0"
   },
   "categories": [
     "Themes"
@@ -44,9 +44,29 @@
   "contributes": {
     "themes": [
       {
-        "label": "Lumberjack Theme",
+        "label": "Lumberjack Midnight Timber",
         "uiTheme": "vs-dark",
         "path": "./dist/vscode/themes/lumberjack-color-theme.json"
+      },
+      {
+        "label": "Lumberjack Forest Night",
+        "uiTheme": "vs-dark",
+        "path": "./dist/vscode/themes/lumberjack-dark-color-theme.json"
+      },
+      {
+        "label": "Lumberjack White Birch",
+        "uiTheme": "vs",
+        "path": "./dist/vscode/themes/lumberjack-light-color-theme.json"
+      },
+      {
+        "label": "Lumberjack Ember OLED",
+        "uiTheme": "vs-dark",
+        "path": "./dist/vscode/themes/lumberjack-oled-color-theme.json"
+      },
+      {
+        "label": "Lumberjack Signal Colorblind",
+        "uiTheme": "vs-dark",
+        "path": "./dist/vscode/themes/lumberjack-colorblind-color-theme.json"
       }
     ]
   }

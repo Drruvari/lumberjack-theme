@@ -17,12 +17,18 @@ It now includes a multi-editor TypeScript theme engine that generates themes fro
 ### Cursor
 1. Open Extensions.
 2. Search for `Lumberjack Theme`.
-3. Click Install.
+3. If search does not show it, open the Extensions menu (`...`) -> `Install from VSIX...`.
+4. Select the packaged file (for example `lumberjack-theme-0.0.2.vsix`).
 
 ## Activate
 1. Open Command Palette (`Cmd/Ctrl+Shift+P`).
 2. Run `Preferences: Color Theme`.
-3. Select `Lumberjack Theme`.
+3. Select one of:
+   - `Lumberjack Midnight Timber`
+   - `Lumberjack Forest Night`
+   - `Lumberjack White Birch`
+   - `Lumberjack Ember OLED`
+   - `Lumberjack Signal Colorblind`
 
 ## Repository
 
