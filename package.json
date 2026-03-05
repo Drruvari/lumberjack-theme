@@ -23,7 +23,8 @@
     "release:changelog": "node scripts/update-changelog.mjs",
     "verify:publish": "node scripts/verify-publish.mjs",
     "repo:protect-main": "node scripts/set-branch-protection.mjs",
-    "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
+    "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json",
+    "hooks:install": "node scripts/install-git-hooks.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
