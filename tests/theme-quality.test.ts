@@ -148,3 +148,31 @@ test("Disabled buttons remain visually distinct from enabled buttons", () => {
     );
   }
 });
+
+test("Primary button text remains readable across all variations", () => {
+  const minimumContrast = 4.5;
+
+  for (const variation of allVariations) {
+    const canonical = buildCanonicalTheme({
+      id: "lumberjack",
+      displayName: "Lumberjack",
+      variation
+    });
+
+    const payload = toVsCodeTheme(canonical) as {
+      colors?: Record<string, unknown>;
+    };
+
+    assert.ok(payload.colors, `Missing 'colors' for variation ${variation.id}`);
+    const buttonBackground = payload.colors["button.background"];
+    const buttonForeground = payload.colors["button.foreground"];
+    assert.equal(typeof buttonBackground, "string", `Missing button.background for variation ${variation.id}`);
+    assert.equal(typeof buttonForeground, "string", `Missing button.foreground for variation ${variation.id}`);
+
+    const ratio = contrastRatio(buttonBackground as string, buttonForeground as string);
+    assert.ok(
+      ratio >= minimumContrast,
+      `button contrast is too low for '${variation.id}': ${ratio.toFixed(2)} < ${minimumContrast}`
+    );
+  }
+});

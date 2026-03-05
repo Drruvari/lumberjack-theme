@@ -5,7 +5,44 @@ function getThemeType(variation: CanonicalTheme["variation"]): "dark" | "light" 
   return variation === "light" ? "light" : "dark";
 }
 
+function parseHexRgb(value: string): [number, number, number] {
+  const raw = value.slice(1, 7);
+  return [Number.parseInt(raw.slice(0, 2), 16), Number.parseInt(raw.slice(2, 4), 16), Number.parseInt(raw.slice(4, 6), 16)];
+}
+
+function relativeChannel(channel: number): number {
+  const normalized = channel / 255;
+  return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+}
+
+function luminance(hex: string): number {
+  const [r, g, b] = parseHexRgb(hex);
+  return 0.2126 * relativeChannel(r) + 0.7152 * relativeChannel(g) + 0.0722 * relativeChannel(b);
+}
+
+function contrastRatio(hexA: string, hexB: string): number {
+  const [lighter, darker] = [luminance(hexA), luminance(hexB)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function chooseReadableForeground(background: string, preferred: string[], minimumContrast = 4.5): string {
+  for (const candidate of preferred) {
+    if (contrastRatio(background, candidate) >= minimumContrast) {
+      return candidate;
+    }
+  }
+
+  // Last-resort fallback keeps accessibility sane for extension buttons.
+  return contrastRatio(background, "#000000") >= contrastRatio(background, "#ffffff") ? "#000000" : "#ffffff";
+}
+
 export function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
+  const primaryButtonForeground = chooseReadableForeground(theme.ui.state.active, [
+    theme.ui.fg.inverted,
+    theme.ui.fg.base,
+    theme.ui.bg.base
+  ]);
+
   return {
     $schema: "vscode://schemas/color-theme",
     name: `${theme.displayName} ${theme.variation}`,
@@ -32,7 +69,7 @@ export function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
       "panel.background": theme.ui.bg.panel,
       "panel.border": theme.ui.border.subtle,
       "button.background": theme.ui.state.active,
-      "button.foreground": theme.ui.fg.inverted,
+      "button.foreground": primaryButtonForeground,
       "button.hoverBackground": theme.ui.state.hover,
       "button.secondaryBackground": theme.ui.bg.overlay,
       "button.secondaryForeground": theme.ui.fg.base,

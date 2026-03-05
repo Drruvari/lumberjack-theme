@@ -24,7 +24,7 @@
     "panel.background": "#151b20",
     "panel.border": "#1d252c",
     "button.background": "#2f7d8a",
-    "button.foreground": "#0d1114",
+    "button.foreground": "#ffffff",
     "button.hoverBackground": "#1d252c",
     "button.secondaryBackground": "#1d252c",
     "button.secondaryForeground": "#d3dde5",
