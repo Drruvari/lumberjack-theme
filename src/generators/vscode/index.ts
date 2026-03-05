@@ -5,7 +5,7 @@ function getThemeType(variation: CanonicalTheme["variation"]): "dark" | "light" 
   return variation === "light" ? "light" : "dark";
 }
 
-function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
+export function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
   return {
     $schema: "vscode://schemas/color-theme",
     name: `${theme.displayName} ${theme.variation}`,

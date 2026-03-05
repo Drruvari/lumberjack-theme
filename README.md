@@ -29,7 +29,7 @@ Precision color themes for VS Code and Cursor, generated from one TypeScript the
 ### From VSIX
 1. Open Extensions.
 2. Use `...` -> `Install from VSIX...`.
-3. Select latest packaged file, e.g. `lumberjack-theme-0.0.4.vsix`.
+3. Select the latest packaged file, e.g. `lumberjack-theme-<version>.vsix`.
 
 ## Activate
 
@@ -43,6 +43,7 @@ Precision color themes for VS Code and Cursor, generated from one TypeScript the
 npm run typecheck
 npm run build
 npm run validate:engine
+npm run test:engine
 ```
 
 ### Useful commands
@@ -75,19 +76,43 @@ Workflow: [`.github/workflows/auto-publish.yml`](./.github/workflows/auto-publis
 
 On each push it will:
 1. Install dependencies.
-2. Bump patch version.
-3. Typecheck/build/validate.
-4. Auto-generate `releases/<version>.md` from commit history.
-5. Commit version + release note and create tag.
-6. Package a new VSIX.
-7. Upload VSIX as artifact and GitHub release asset.
-8. Publish to VS Code Marketplace.
-9. Optionally publish to Open VSX.
-10. Push release commit and tag.
+2. Validate publish secrets.
+3. Bump patch version.
+4. Typecheck/build/validate/test.
+5. Auto-generate `releases/<version>.md` from commit history.
+6. Commit version + release note and create tag.
+7. Package a new VSIX.
+8. Upload VSIX as artifact and GitHub release asset.
+9. Publish to VS Code Marketplace.
+10. Publish to Open VSX.
+11. Verify that the published version is visible on both registries.
+12. Push release commit and tag.
+13. Create a GitHub Release with release notes and VSIX asset.
 
 Required GitHub secrets:
-- `VSCE_PAT` (required)
-- `OPEN_VSX_TOKEN` (optional)
+- `VSCE_PAT`
+- `OPEN_VSX_TOKEN`
+
+## CI And Main Protection
+
+Workflow: [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)
+
+On each PR and `main` push it runs:
+- `npm ci`
+- `npm run typecheck`
+- `npm run build`
+- `npm run validate:engine`
+- `npm run test:engine`
+
+Apply main branch protection (requires admin token):
+
+```bash
+GITHUB_TOKEN=... npm run repo:protect-main
+```
+
+Optional branch-protection inputs:
+- `REQUIRED_CHECKS` (default: `CI / ci`, comma-separated)
+- positional argument `<owner/repo>` to target a different repository
 
 ## License
 

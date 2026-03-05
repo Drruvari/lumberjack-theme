@@ -12,6 +12,7 @@
     "vscode:prepublish": "npm run build",
     "build:engine": "node --experimental-strip-types src/cli/build.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:engine": "node --experimental-strip-types --test tests/theme-quality.test.ts",
     "validate:engine": "node --experimental-strip-types src/cli/validate.ts",
     "targets": "node --experimental-strip-types src/cli/list-targets.ts",
     "package": "npm run build && vsce package",
@@ -20,6 +21,8 @@
     "release:note": "node scripts/new-release-note.mjs",
     "release:auto-note": "node scripts/generate-release-note.mjs",
     "release:changelog": "node scripts/update-changelog.mjs",
+    "verify:publish": "node scripts/verify-publish.mjs",
+    "repo:protect-main": "node scripts/set-branch-protection.mjs",
     "tokens:diff": "node scripts/diff-theme-keys.mjs dist/vscode/themes/lumberjack-color-theme.json tmp/generated-theme.json"
   },
   "devDependencies": {
