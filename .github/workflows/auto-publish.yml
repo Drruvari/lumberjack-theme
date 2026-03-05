@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,6 +17,7 @@ jobs:
   publish:
     if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,6 +33,24 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Validate publish secrets
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+        run: |
+          missing=0
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::error::VSCE_PAT is not set. Add it in GitHub → Settings → Secrets → Actions."
+            missing=1
+          fi
+          if [ -z "$OPEN_VSX_TOKEN" ]; then
+            echo "::error::OPEN_VSX_TOKEN is not set. Add it in GitHub → Settings → Secrets → Actions."
+            missing=1
+          fi
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
 
       - name: Configure git author
         run: |
@@ -59,7 +79,7 @@ jobs:
           npm run validate:engine
 
       - name: Package VSIX
-        run: vsce package --out "$VSIX_FILE"
+        run: npx vsce package --out "$VSIX_FILE"
 
       - name: Commit release files
         run: |
@@ -78,21 +98,20 @@ jobs:
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
-          if [ -z "$VSCE_PAT" ]; then
-            echo "::error::VSCE_PAT secret is not set. Go to GitHub → Settings → Secrets → Actions and add VSCE_PAT."
-            exit 1
-          fi
-          vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT"
+          npx vsce publish --packagePath "$VSIX_FILE" -p "$VSCE_PAT" --skip-duplicate
 
       - name: Publish to Open VSX
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
-        run: |
-          if [ -n "$OPEN_VSX_TOKEN" ]; then
-            ovsx publish "$VSIX_FILE" -p "$OPEN_VSX_TOKEN"
-          else
-            echo "OPEN_VSX_TOKEN not set — skipping Open VSX publish."
-          fi
+        run: npx ovsx publish "$VSIX_FILE" -p "$OPEN_VSX_TOKEN" --skip-duplicate
 
       - name: Push release commit and tag
         run: git push origin main --follow-tags
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          body_path: releases/${{ env.VERSION }}.md
+          files: ${{ env.VSIX_FILE }}
