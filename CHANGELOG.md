@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.6] - 2026-03-05
+
+- Automated patch release.
+
 All notable changes to this project will be documented in this file.
 
 Detailed release notes live in `releases/*.md`.
