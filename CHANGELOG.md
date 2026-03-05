@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.8] - 2026-03-05
+
+- Automated patch release.
+
 ## [0.0.7] - 2026-03-05
 
 - Automated patch release.
