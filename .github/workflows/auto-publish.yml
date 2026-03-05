@@ -66,9 +66,6 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "VSIX_FILE=lumberjack-theme-$VERSION.vsix" >> "$GITHUB_ENV"
 
-      - name: Remove old VSIX files
-        run: find . -maxdepth 1 -type f -name 'lumberjack-theme-*.vsix' -delete
-
       - name: Generate release note
         run: npm run release:auto-note -- "$VERSION"
 
@@ -84,7 +81,7 @@ jobs:
 
       - name: Package VSIX
         run: |
-          npx vsce package --out "$VSIX_FILE"
+          npm run package
           count="$(find . -maxdepth 1 -type f -name 'lumberjack-theme-*.vsix' | wc -l | tr -d ' ')"
           if [ "$count" -ne 1 ]; then
             echo "::error::Expected exactly one VSIX after packaging, found $count."
@@ -95,7 +92,7 @@ jobs:
       - name: Commit release files
         run: |
           git add package.json package-lock.json CHANGELOG.md "releases/$VERSION.md" dist/
-          git commit -m "chore(release): v$VERSION [skip ci]"x
+          git commit -m "chore(release): v$VERSION [skip ci]"
           git tag "v$VERSION"
 
       - name: Upload VSIX artifact

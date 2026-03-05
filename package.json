@@ -15,7 +15,7 @@
     "test:engine": "node --experimental-strip-types --test tests/theme-quality.test.ts",
     "validate:engine": "node --experimental-strip-types src/cli/validate.ts",
     "targets": "node --experimental-strip-types src/cli/list-targets.ts",
-    "package": "npm run build && vsce package",
+    "package": "npm run build && node scripts/package-vsix.mjs",
     "release:vsce": "vsce publish",
     "release:ovsx": "ovsx publish",
     "release:note": "node scripts/new-release-note.mjs",
