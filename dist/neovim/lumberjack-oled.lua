@@ -2,19 +2,19 @@
 return {
   normal = {
     bg = "#000000",
-    fg = "#d5dfe7"
+    fg = "#d3dde5"
   },
-  cursorline = { bg = "#ffffff0d" },
-  visual = { bg = "#2f6fb34d" },
-  comment = { fg = "#587088" },
-  keyword = { fg = "#dcc257" },
-  string = { fg = "#c67add" },
-  function_ = { fg = "#59c9d8" },
-  type = { fg = "#58c985" },
+  cursorline = { bg = "#ffffff10" },
+  visual = { bg = "#2f7d8a4d" },
+  comment = { fg = "#5d7080" },
+  keyword = { fg = "#ecd98f" },
+  string = { fg = "#56b984" },
+  function_ = { fg = "#95d4e2" },
+  type = { fg = "#56b984" },
   diagnostic = {
-    error = "#e45a6c",
-    warn = "#dcc257",
-    info = "#5d9ee6",
-    hint = "#58c985"
+    error = "#dd5b68",
+    warn = "#da9652",
+    info = "#5b90d1",
+    hint = "#56b984"
   }
 }

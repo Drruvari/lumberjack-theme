@@ -2,20 +2,20 @@
   "name": "Lumberjack light",
   "appearance": "light",
   "style": {
-    "background": "#edf2f7",
-    "text": "#11161c",
-    "panel_background": "#b7c7d4",
-    "panel_border": "#8aa1b5",
-    "status_bar_background": "#d5dfe7",
-    "border": "#8aa1b5"
+    "background": "#eef3f6",
+    "text": "#151b20",
+    "panel_background": "#acbcc9",
+    "panel_border": "#8297a8",
+    "status_bar_background": "#d3dde5",
+    "border": "#8297a8"
   },
   "syntax": {
-    "text": "#11161c",
-    "comment": "#587088",
-    "keyword": "#dcc257",
-    "string": "#c67add",
-    "function": "#59c9d8",
-    "type": "#58c985",
-    "variable": "#172029"
+    "text": "#151b20",
+    "comment": "#44525f",
+    "keyword": "#36649e",
+    "string": "#317e58",
+    "function": "#5b90d1",
+    "type": "#36649e",
+    "variable": "#1d252c"
   }
 }

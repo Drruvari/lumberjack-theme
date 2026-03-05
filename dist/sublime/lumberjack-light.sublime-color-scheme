@@ -1,19 +1,19 @@
 {
   "name": "Lumberjack light",
   "variables": {
-    "background": "#edf2f7",
-    "foreground": "#11161c",
-    "accent": "#2f6fb3",
-    "comment": "#587088",
-    "string": "#c67add",
-    "keyword": "#dcc257"
+    "background": "#eef3f6",
+    "foreground": "#151b20",
+    "accent": "#36649e",
+    "comment": "#44525f",
+    "string": "#317e58",
+    "keyword": "#36649e"
   },
   "globals": {
     "background": "var(background)",
     "foreground": "var(foreground)",
-    "selection": "#5d9ee64d",
-    "caret": "#dcc257",
-    "line_highlight": "#0000000d"
+    "selection": "#5b90d133",
+    "caret": "#5b90d1",
+    "line_highlight": "#0000000a"
   },
   "rules": [
     {
@@ -30,11 +30,11 @@
     },
     {
       "scope": "entity.name.function",
-      "foreground": "#59c9d8"
+      "foreground": "#5b90d1"
     },
     {
       "scope": "entity.name.type",
-      "foreground": "#58c985"
+      "foreground": "#36649e"
     }
   ]
 }

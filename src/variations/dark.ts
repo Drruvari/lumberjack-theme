@@ -1,4 +1,5 @@
 import type { Palette, Variation } from "../core/types.ts";
+import { withAlpha } from "../core/utils/color.ts";
 import { buildSyntaxTokens } from "../theme/semantics/syntax.ts";
 import { buildDiagnosticTokens } from "../theme/semantics/diagnostics.ts";
 import { buildVcsTokens } from "../theme/semantics/vcs.ts";
@@ -11,14 +12,15 @@ function makeTheme(palette: Palette): ReturnType<Variation["apply"]> {
   const ui = buildSurfaceTokens(palette, "dark");
   const editor = buildEditorUiTokens(palette, "dark");
 
-  // Keep dark readable while making it distinct from default.
+  // Keep dark cool and calm versus the warmer default profile.
   syntax.keyword = palette.blue[7];
   syntax.operator = palette.cyan[7];
   syntax.type = palette.cyan[9];
   ui.border.focus = palette.cyan[9];
   ui.state.active = palette.cyan[7];
-  ui.state.selected = palette.cyan[5];
+  ui.state.selected = withAlpha(palette.cyan[5], 0.26);
   editor.cursor = palette.cyan[9];
+  editor.selection = withAlpha(palette.blue[5], 0.3);
 
   return {
     semantic: {

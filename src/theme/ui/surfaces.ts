@@ -1,4 +1,5 @@
 import type { Palette, UiTokens, VariationId } from "../../core/types.ts";
+import { withAlpha } from "../../core/utils/color.ts";
 
 export function buildSurfaceTokens(palette: Palette, variation: VariationId): Pick<UiTokens, "bg" | "fg" | "border" | "state"> {
   if (variation === "light") {
@@ -22,9 +23,9 @@ export function buildSurfaceTokens(palette: Palette, variation: VariationId): Pi
       },
       state: {
         active: palette.blue[5],
-        hover: palette.gray[8],
-        selected: palette.blue[3],
-        disabled: palette.gray[6]
+        hover: withAlpha(palette.gray[7], 0.35),
+        selected: withAlpha(palette.blue[5], 0.22),
+        disabled: withAlpha(palette.gray[6], 0.55)
       }
     };
   }
@@ -46,16 +47,19 @@ export function buildSurfaceTokens(palette: Palette, variation: VariationId): Pi
       border: {
         subtle: palette.gray[2],
         strong: palette.gray[4],
-        focus: palette.cyan[7]
+        focus: palette.cyan[9]
       },
       state: {
         active: palette.cyan[5],
         hover: palette.gray[2],
-        selected: palette.cyan[3],
+        selected: withAlpha(palette.cyan[5], 0.3),
         disabled: palette.gray[5]
       }
     };
   }
+
+  const isColorblind = variation === "colorblind";
+  const isDefault = variation === "default";
 
   return {
     bg: {
@@ -73,12 +77,16 @@ export function buildSurfaceTokens(palette: Palette, variation: VariationId): Pi
     border: {
       subtle: palette.gray[3],
       strong: palette.gray[5],
-      focus: variation === "colorblind" ? palette.blue[9] : palette.blue[7]
+      focus: isColorblind ? palette.blue[9] : isDefault ? palette.orange[7] : palette.blue[7]
     },
     state: {
-      active: variation === "colorblind" ? palette.blue[7] : palette.blue[5],
+      active: isColorblind ? palette.blue[7] : isDefault ? palette.orange[5] : palette.blue[5],
       hover: palette.gray[3],
-      selected: variation === "colorblind" ? palette.blue[5] : palette.blue[3],
+      selected: isColorblind
+        ? withAlpha(palette.blue[5], 0.3)
+        : isDefault
+          ? withAlpha(palette.orange[5], 0.28)
+          : withAlpha(palette.blue[5], 0.28),
       disabled: palette.gray[5]
     }
   };

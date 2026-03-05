@@ -3,19 +3,19 @@
   "appearance": "dark",
   "style": {
     "background": "#000000",
-    "text": "#d5dfe7",
-    "panel_background": "#11161c",
-    "panel_border": "#172029",
-    "status_bar_background": "#0b0f14",
-    "border": "#172029"
+    "text": "#d3dde5",
+    "panel_background": "#151b20",
+    "panel_border": "#1d252c",
+    "status_bar_background": "#0d1114",
+    "border": "#1d252c"
   },
   "syntax": {
-    "text": "#d5dfe7",
-    "comment": "#587088",
-    "keyword": "#dcc257",
-    "string": "#c67add",
-    "function": "#59c9d8",
-    "type": "#58c985",
-    "variable": "#edf2f7"
+    "text": "#d3dde5",
+    "comment": "#5d7080",
+    "keyword": "#ecd98f",
+    "string": "#56b984",
+    "function": "#95d4e2",
+    "type": "#56b984",
+    "variable": "#eef3f6"
   }
 }
