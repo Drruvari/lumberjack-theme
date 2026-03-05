@@ -119,14 +119,19 @@ jobs:
       - name: Push release commit and tag
         run: git push origin main --follow-tags
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@7b4da11513bf3f43f9999e90eabced41ab8bb048 # v2.2.0
-        with:
-          tag_name: v${{ env.VERSION }}
-          name: v${{ env.VERSION }}
-          body_path: releases/${{ env.VERSION }}.md
-          files: ${{ env.VSIX_FILE }}
-          overwrite_files: true
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="v$VERSION"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$tag" "$VSIX_FILE" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$tag" "$VSIX_FILE" \
+              --title "$tag" \
+              --notes-file "releases/$VERSION.md" \
+              --repo "$GITHUB_REPOSITORY"
+          fi
 
       - name: Verify published version
         env:
