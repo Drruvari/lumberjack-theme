@@ -2,7 +2,7 @@
   "name": "Lumberjack dark",
   "variables": {
     "background": "#0d1114",
-    "foreground": "#d3dde5",
+    "foreground": "#acbcc9",
     "accent": "#55aec0",
     "comment": "#5d7080",
     "string": "#56b984",

@@ -7,7 +7,7 @@
     "foreground": "#d3dde5",
     "focusBorder": "#9fc0ea",
     "editor.background": "#0d1114",
-    "editor.foreground": "#d3dde5",
+    "editor.foreground": "#acbcc9",
     "editorLineNumber.foreground": "#44525f",
     "editorLineNumber.activeForeground": "#acbcc9",
     "editorCursor.foreground": "#9fc0ea",
@@ -58,10 +58,10 @@
     "function": "#55aec0",
     "method": "#55aec0",
     "namespace": "#55aec0",
-    "parameter": "#eef3f6",
+    "parameter": "#95d4e2",
     "property": "#5b90d1",
     "type": "#ecd98f",
-    "variable": "#eef3f6",
+    "variable": "#d3dde5",
     "variableReadOnly": "#da9652"
   },
   "tokenColors": [
@@ -120,10 +120,89 @@
     },
     {
       "scope": [
+        "entity.name.class",
+        "support.class",
+        "entity.name.type.class"
+      ],
+      "settings": {
+        "foreground": "#ecd98f"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.tag",
+        "meta.tag",
+        "support.class.component"
+      ],
+      "settings": {
+        "foreground": "#55aec0"
+      }
+    },
+    {
+      "scope": [
+        "variable.parameter",
+        "meta.parameter",
+        "variable.other.readwrite.alias"
+      ],
+      "settings": {
+        "foreground": "#95d4e2"
+      }
+    },
+    {
+      "scope": [
+        "variable.object.property",
+        "variable.other.property",
+        "meta.object-literal.key"
+      ],
+      "settings": {
+        "foreground": "#5b90d1"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.constant",
+        "constant.other",
+        "constant.character.escape"
+      ],
+      "settings": {
+        "foreground": "#da9652"
+      }
+    },
+    {
+      "scope": [
+        "support.variable",
+        "variable.language",
+        "variable.language.this",
+        "variable.language.super"
+      ],
+      "settings": {
+        "foreground": "#9fc0ea"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function.constructor",
+        "meta.class-method.js entity.name.function"
+      ],
+      "settings": {
+        "foreground": "#ecd98f"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.accessor",
+        "punctuation.separator.key-value"
+      ],
+      "settings": {
+        "foreground": "#5b90d1"
+      }
+    },
+    {
+      "scope": [
         "variable"
       ],
       "settings": {
-        "foreground": "#eef3f6"
+        "foreground": "#d3dde5"
       }
     }
   ]

@@ -2,7 +2,7 @@
 return {
   normal = {
     bg = "#0d1114",
-    fg = "#d3dde5"
+    fg = "#acbcc9"
   },
   cursorline = { bg = "#ffffff10" },
   visual = { bg = "#36649e4d" },

@@ -66,7 +66,7 @@ export function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
       function: theme.semantic.syntax.function,
       method: theme.semantic.syntax.method,
       namespace: theme.semantic.syntax.tag,
-      parameter: theme.semantic.syntax.variable,
+      parameter: theme.semantic.syntax.string,
       property: theme.semantic.syntax.property,
       type: theme.semantic.syntax.type,
       variable: theme.semantic.syntax.variable,
@@ -96,6 +96,38 @@ export function toVsCodeTheme(theme: CanonicalTheme): Record<string, unknown> {
       {
         scope: ["entity.name.type", "support.type"],
         settings: { foreground: theme.semantic.syntax.type }
+      },
+      {
+        scope: ["entity.name.class", "support.class", "entity.name.type.class"],
+        settings: { foreground: theme.semantic.syntax.type }
+      },
+      {
+        scope: ["entity.name.tag", "meta.tag", "support.class.component"],
+        settings: { foreground: theme.semantic.syntax.tag }
+      },
+      {
+        scope: ["variable.parameter", "meta.parameter", "variable.other.readwrite.alias"],
+        settings: { foreground: theme.semantic.syntax.string }
+      },
+      {
+        scope: ["variable.object.property", "variable.other.property", "meta.object-literal.key"],
+        settings: { foreground: theme.semantic.syntax.property }
+      },
+      {
+        scope: ["variable.other.constant", "constant.other", "constant.character.escape"],
+        settings: { foreground: theme.semantic.syntax.constant }
+      },
+      {
+        scope: ["support.variable", "variable.language", "variable.language.this", "variable.language.super"],
+        settings: { foreground: theme.semantic.syntax.keyword }
+      },
+      {
+        scope: ["entity.name.function.constructor", "meta.class-method.js entity.name.function"],
+        settings: { foreground: theme.semantic.syntax.type }
+      },
+      {
+        scope: ["punctuation.accessor", "punctuation.separator.key-value"],
+        settings: { foreground: theme.semantic.syntax.property }
       },
       {
         scope: ["variable"],

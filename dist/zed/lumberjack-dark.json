@@ -10,12 +10,12 @@
     "border": "#27323a"
   },
   "syntax": {
-    "text": "#d3dde5",
+    "text": "#acbcc9",
     "comment": "#5d7080",
     "keyword": "#5b90d1",
     "string": "#56b984",
     "function": "#55aec0",
     "type": "#95d4e2",
-    "variable": "#eef3f6"
+    "variable": "#d3dde5"
   }
 }

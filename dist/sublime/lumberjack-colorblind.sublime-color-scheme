@@ -2,7 +2,7 @@
   "name": "Lumberjack colorblind",
   "variables": {
     "background": "#0d1114",
-    "foreground": "#d3dde5",
+    "foreground": "#acbcc9",
     "accent": "#5b90d1",
     "comment": "#5d7080",
     "string": "#95d4e2",

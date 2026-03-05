@@ -2,20 +2,20 @@
   "name": "Lumberjack default",
   "appearance": "dark",
   "style": {
-    "background": "#0d1114",
-    "text": "#d3dde5",
-    "panel_background": "#1d252c",
-    "panel_border": "#27323a",
-    "status_bar_background": "#151b20",
-    "border": "#27323a"
+    "background": "#001419",
+    "text": "#8fe8f4",
+    "panel_background": "#000e11",
+    "panel_border": "#000000a8",
+    "status_bar_background": "#00242b",
+    "border": "#000000a8"
   },
   "syntax": {
-    "text": "#d3dde5",
-    "comment": "#5d7080",
-    "keyword": "#ecd98f",
-    "string": "#56b984",
-    "function": "#95d4e2",
-    "type": "#95dab2",
-    "variable": "#eef3f6"
+    "text": "#66dbe8",
+    "comment": "#2d909e",
+    "keyword": "#e3cb6d",
+    "string": "#f07ca3",
+    "function": "#7de7f6",
+    "type": "#74d68f",
+    "variable": "#e9f2f4"
   }
 }

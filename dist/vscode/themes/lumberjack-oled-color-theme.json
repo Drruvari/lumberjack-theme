@@ -58,10 +58,10 @@
     "function": "#95d4e2",
     "method": "#95d4e2",
     "namespace": "#95d4e2",
-    "parameter": "#eef3f6",
+    "parameter": "#56b984",
     "property": "#5b90d1",
     "type": "#56b984",
-    "variable": "#eef3f6",
+    "variable": "#d3dde5",
     "variableReadOnly": "#da9652"
   },
   "tokenColors": [
@@ -120,10 +120,89 @@
     },
     {
       "scope": [
+        "entity.name.class",
+        "support.class",
+        "entity.name.type.class"
+      ],
+      "settings": {
+        "foreground": "#56b984"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.tag",
+        "meta.tag",
+        "support.class.component"
+      ],
+      "settings": {
+        "foreground": "#95d4e2"
+      }
+    },
+    {
+      "scope": [
+        "variable.parameter",
+        "meta.parameter",
+        "variable.other.readwrite.alias"
+      ],
+      "settings": {
+        "foreground": "#56b984"
+      }
+    },
+    {
+      "scope": [
+        "variable.object.property",
+        "variable.other.property",
+        "meta.object-literal.key"
+      ],
+      "settings": {
+        "foreground": "#5b90d1"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.constant",
+        "constant.other",
+        "constant.character.escape"
+      ],
+      "settings": {
+        "foreground": "#da9652"
+      }
+    },
+    {
+      "scope": [
+        "support.variable",
+        "variable.language",
+        "variable.language.this",
+        "variable.language.super"
+      ],
+      "settings": {
+        "foreground": "#ecd98f"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function.constructor",
+        "meta.class-method.js entity.name.function"
+      ],
+      "settings": {
+        "foreground": "#56b984"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.accessor",
+        "punctuation.separator.key-value"
+      ],
+      "settings": {
+        "foreground": "#5b90d1"
+      }
+    },
+    {
+      "scope": [
         "variable"
       ],
       "settings": {
-        "foreground": "#eef3f6"
+        "foreground": "#d3dde5"
       }
     }
   ]
