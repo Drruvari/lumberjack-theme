@@ -6,6 +6,7 @@ import { toVsCodeTheme } from "../src/generators/vscode/index.ts";
 
 const requiredColorKeys = [
   "foreground",
+  "disabledForeground",
   "focusBorder",
   "editor.background",
   "editor.foreground",
@@ -24,6 +25,11 @@ const requiredColorKeys = [
   "panel.border",
   "button.background",
   "button.foreground",
+  "button.hoverBackground",
+  "button.secondaryBackground",
+  "button.secondaryForeground",
+  "button.secondaryHoverBackground",
+  "button.border",
   "input.background",
   "input.foreground",
   "terminal.background",
@@ -118,6 +124,27 @@ test("Foreground contrast remains high across all variations", () => {
     assert.ok(
       editorTextContrast >= minimumContrast,
       `semantic.syntax.text contrast is too low for '${variation.id}': ${editorTextContrast.toFixed(2)} < ${minimumContrast}`
+    );
+  }
+});
+
+test("Disabled buttons remain visually distinct from enabled buttons", () => {
+  for (const variation of allVariations) {
+    const canonical = buildCanonicalTheme({
+      id: "lumberjack",
+      displayName: "Lumberjack",
+      variation
+    });
+
+    const payload = toVsCodeTheme(canonical) as {
+      colors?: Record<string, unknown>;
+    };
+
+    assert.ok(payload.colors, `Missing 'colors' for variation ${variation.id}`);
+    assert.notEqual(
+      payload.colors["button.foreground"],
+      payload.colors["disabledForeground"],
+      `button.foreground and disabledForeground should differ for variation ${variation.id}`
     );
   }
 });
