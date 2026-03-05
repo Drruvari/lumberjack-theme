@@ -49,10 +49,7 @@ async function main() {
   }
 
   const status = await getStdout("git", ["status", "--porcelain"]);
-  if (status.length > 0) {
-    console.log("[sync-after-push] Working tree is not clean, skipping auto-sync.");
-    return;
-  }
+  const isClean = status.length === 0;
 
   await run("git", ["fetch", "origin", "main"]);
   const counts = await getStdout("git", ["rev-list", "--left-right", "--count", "HEAD...origin/main"]);
@@ -61,7 +58,11 @@ async function main() {
   const behind = Number.parseInt(behindRaw ?? "0", 10);
 
   if (behind > 0 && ahead === 0) {
-    await run("git", ["pull", "--ff-only", "origin", "main"]);
+    if (isClean) {
+      await run("git", ["pull", "--ff-only", "origin", "main"]);
+    } else {
+      console.log("[sync-after-push] Behind origin/main but working tree is dirty, skipping auto-pull.");
+    }
   } else if (behind > 0 && ahead > 0) {
     console.log("[sync-after-push] Branch diverged after push; skipping auto-pull.");
   }

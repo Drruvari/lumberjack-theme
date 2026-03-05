@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
-const hookPath = path.join(repoRoot, ".githooks", "post-push");
+const hooksDir = path.join(repoRoot, ".githooks");
 
 function run(command, args) {
   return new Promise((resolve, reject) => {
@@ -34,7 +34,12 @@ async function main() {
     return;
   }
 
-  await fs.chmod(hookPath, 0o755);
+  const entries = await fs.readdir(hooksDir, { withFileTypes: true });
+  await Promise.all(
+    entries
+      .filter((entry) => entry.isFile())
+      .map((entry) => fs.chmod(path.join(hooksDir, entry.name), 0o755))
+  );
   await run("git", ["config", "core.hooksPath", ".githooks"]);
   console.log("Installed git hooks from .githooks/");
 }

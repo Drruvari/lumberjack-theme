@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+set -eu
+
+rewrite_cmd="${1:-}"
+if [ "$rewrite_cmd" != "rebase" ]; then
+  exit 0
+fi
+
+if [ "${LUMBERJACK_SKIP_POST_REWRITE:-0}" = "1" ]; then
+  exit 0
+fi
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" != "main" ]; then
+  exit 0
+fi
+
+echo "[post-rewrite] Syncing and packaging latest VSIX..."
+node scripts/sync-after-push.mjs

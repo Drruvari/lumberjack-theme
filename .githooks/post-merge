@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ "${LUMBERJACK_SKIP_POST_MERGE:-0}" = "1" ]; then
+  exit 0
+fi
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" != "main" ]; then
+  exit 0
+fi
+
+echo "[post-merge] Syncing and packaging latest VSIX..."
+node scripts/sync-after-push.mjs
