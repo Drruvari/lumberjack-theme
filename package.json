@@ -27,7 +27,7 @@
     "hooks:install": "node scripts/install-git-hooks.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
+    "@types/node": "^25.3.5",
     "@vscode/vsce": "^3.4.0",
     "ovsx": "^0.10.1",
     "typescript": "^5.8.3"
